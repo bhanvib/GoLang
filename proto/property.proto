@@ -1,0 +1,52 @@
+syntax = "proto3";
+package property;
+option go_package="/propertypb";
+
+message Property {
+    string propid=1;
+    string propertyname=2;
+    string address=3;
+    string city=4; 
+    string bedrooms=5; 
+}
+message CreatePropertyRequest {
+    Property  property = 1;
+}
+message CreatePropertyResponse {
+    Property  property = 1;
+}
+message GetPropertyByIdRequest {
+    string property_propid = 1;
+}
+message GetPropertyByIdResponse {
+    Property  property = 1;
+}
+message UpdatePropertyRequest {
+    Property  property = 1;
+}
+message UpdatePropertyResponse {
+    Property  property = 1;
+}
+message DeletePropertyRequest {
+    string  property_propid = 1;
+}
+message DeletePropertyResponse {
+   string  property_propid = 1;
+}
+message GetPropertyRequest {
+    Property  property = 1;
+}
+message GetPropertyResponse {
+    Property  property = 1;
+}
+
+
+service PropertyService{
+    
+    rpc CreateProperty(CreatePropertyRequest) returns (CreatePropertyResponse) {};
+    rpc GetPropertyById(GetPropertyByIdRequest) returns (GetPropertyByIdResponse) {};
+    rpc UpdateProperty(UpdatePropertyRequest) returns (UpdatePropertyResponse){};
+    rpc DeleteProperty(DeletePropertyRequest) returns (DeletePropertyResponse){};
+    rpc GetProperty(GetPropertyRequest) returns (stream GetPropertyResponse){};
+   
+}
